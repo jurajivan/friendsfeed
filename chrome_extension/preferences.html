@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Options</title>
+	<style>
+		* {
+			outline: none;
+		}
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+			font-size: 14px;
+			margin: 0;
+			padding: 40px;
+			color: #222;
+		}
+		h1 {
+			font-size: 32px;
+			font-weight: 600;
+		}
+		.option {
+			margin: 4px 0;
+		}
+		.submit {
+			margin-top: 20px;
+		}
+		.submit button {
+			padding: 5px 15px 6px;
+			font-size: 14px;
+			font-weight: 600;
+			color: #fff;
+			border: 0;
+			background-color: #2ecc71;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+		.submit span {
+			font-size: 12px;
+			margin-left: 12px;
+		}
+	</style>
+</head>
+<body>
+	<h1>friends feed</h1>
+	<p>By default, we hide all posts that are not directly from your firends or pages you follow.</p>
+	<div class="option"><input type="radio" name="display" value="hide" id="display_hide"> <label for="display_hide">Hide completely</label></div>
+	<div class="option"><input type="radio" name="display" value="fade" id="display_fade"> <label for="display_fade">Just fade</label></div>
+	<div class="submit"><button id="save">Save</button><span id="status"></span></div>
+	<script src="preferences.js"></script>
+</body>
+</html>

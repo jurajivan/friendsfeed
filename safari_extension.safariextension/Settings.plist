@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string>1</string>
+		<key>Key</key>
+		<string>hideStory</string>
+		<key>Secure</key>
+		<false/>
+		<key>Title</key>
+		<string>Unwanted stories</string>
+		<key>Titles</key>
+		<array>
+			<string>Hide completely</string>
+			<string>Just fade</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>1</string>
+			<string>0</string>
+		</array>
+	</dict>
+</array>
+</plist>
