@@ -1,13 +1,17 @@
 (function() {
 
-	var settings, init = function() {
-		$('body').on('DOMNodeInserted', '._5pcb', function(event) {
-			clearAddedFeed(event.originalEvent);
+	var settings,
+		newsFeedSelector = '._5pcb',
+		storySelector = '._5jmm',
+		storyHeaderSelector = '._1qbu';
+
+	var init = function() {
+		document.body.addEventListener('DOMNodeInserted', function(event) {
+			clearAddedFeed(event);
 		});
-		var elements = document.querySelectorAll('._1qbu');
-		[].forEach.call(elements, function(element) {
-			var storyElement = element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-			hideStory(storyElement);
+		var storyElements = document.querySelectorAll(storySelector);
+		[].forEach.call(storyElements, function(storyElement) {
+			processStory(storyElement);
 		});
 	};
 
@@ -21,11 +25,40 @@
 	safari.self.tab.dispatchMessage("getSettings");
 
 	function clearAddedFeed(event) {
-		var storyElement = event.target;
-		if(isElement(storyElement) && storyElement.classList.contains('_4-u2')) {
-			if(storyElement.querySelector('._1qbu')) {
-				hideStory(storyElement);
+		var storyElement = event.target.parentNode;
+		processStory(storyElement);
+	}
+
+	function processStory(storyElement) {
+		if(!isElement(storyElement)) return;
+		if(!storyElement.classList.contains('_5jmm')) return;
+		// Story with header
+		if(storyElement.querySelector(storyHeaderSelector)) {
+			var linkElement = storyElement.querySelector(storyHeaderSelector + ' a');
+			if(linkElement && linkElement.href) {
+				linkElementHref = linkElement.href.replace(/\?.+/, '');
+				var authorHrefs = storyElement.querySelectorAll('._3x-2 ._5pbw._5vra a'),
+					match = false;
+				[].forEach.call(authorHrefs, function(authorHref) {
+					var authorHref = authorHref.href.replace(/\?.+/, '');
+					if(linkElementHref == authorHref) {
+						match = true;
+					}
+				});
+				if(match) return;
 			}
+			hideStory(storyElement);
+			return;
+		}
+		// Sponsored Post
+		if(storyElement.querySelector('._5g-l') && storyElement.querySelector('.uiStreamSponsoredLink')) {
+			hideStory(storyElement);
+			return;
+		}
+		// People you may know
+		if(storyElement.querySelector('._1dwg._1w_m .mts')) {
+			hideStory(storyElement);
+			return;
 		}
 	}
 

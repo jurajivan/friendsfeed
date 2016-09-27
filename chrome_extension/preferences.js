@@ -1,4 +1,3 @@
-
 function save_options() {
 	var hideStory = document.getElementById('display_hide').checked ? true : false;
 	chrome.storage.sync.set({
@@ -16,7 +15,6 @@ function restore_options() {
 	chrome.storage.sync.get({
 		hideStory: true
 	}, function(items) {
-		console.log(items);
 		document.getElementById('display_hide').checked = items.hideStory;
 		document.getElementById('display_fade').checked = !items.hideStory;
 	});

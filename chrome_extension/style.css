@@ -2,3 +2,8 @@
 	height: 0;
 	overflow: hidden;
 }
+
+#stream_pagelet.show ._5pcb {
+	height: auto;
+	overflow: auto;
+}
