@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>@jurajivan</string>
 	<key>Builder Version</key>
-	<string>11601.7.8</string>
+	<string>11602.4.8.0.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>friends feed</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3</string>
+	<string>1.4.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
@@ -33,12 +33,16 @@
 			<array>
 				<string>script.js</string>
 			</array>
+			<key>Start</key>
+			<array>
+				<string>underscore.js</string>
+			</array>
 		</dict>
 	</dict>
 	<key>Description</key>
 	<string>Enjoy Facebook News Feed with stories only by your friends and pages you follow.</string>
 	<key>DeveloperIdentifier</key>
-	<string>M4Z4566CAV</string>
+	<string>96V8QYM368</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -55,6 +59,8 @@
 			<string>Some</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://foxvalleyapps.com/friendsfeed/updates.xml</string>
 	<key>Website</key>
 	<string>http://foxvalleyapps.com/friendsfeed/</string>
 </dict>

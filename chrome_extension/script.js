@@ -36,29 +36,28 @@ function processStory(storyElement) {
 	if(!storyElement.classList.contains('_5jmm')) return;
 	// Story with header
 	if(storyElement.querySelector(storyHeaderSelector)) {
-		var linkElements = storyElement.querySelectorAll(storyHeaderSelector + ' a');
-		// GET HREFS
-		// If empty array of hrefs return;
-		// var authorHrefs = storyElement.querySelectorAll('._3x-2 ._5pbw._5vra a'),
-		// Compare two arrays and look for match
-		// var linkElement = storyElement.querySelector(storyHeaderSelector + ' a');
-		if(linkElement && linkElement.href) {
-			linkElementHref = linkElement.href.replace(/\?.+/, '');
-			var authorHrefs = storyElement.querySelectorAll('._3x-2 ._5pbw._5vra a'),
-				match = false;
-			[].forEach.call(authorHrefs, function(authorHref) {
-				var authorHref = authorHref.href.replace(/\?.+/, '');
-				if(linkElementHref == authorHref) {
-					match = true;
-				}
-			});
-			if(match) return;
+		var linkElements = storyElement.querySelectorAll(storyHeaderSelector + ' a'),
+			authorElements = storyElement.querySelectorAll('._3x-2 ._5pbw._5vra a'),
+			linkElementsHrefs = getArrayOfHrefs(linkElements),
+			authorElementsHrefs = getArrayOfHrefs(authorElements),
+			match = _.intersection(linkElementsHrefs, authorElementsHrefs);
+		if(match.length == 0) {
+			hideStory(storyElement);
+			return;
 		}
+		// When a friend like/comment a story of page he follows
+		// if(storyElement.querySelector('button.PageLikeButton')) {
+		// 	hideStory(storyElement);
+		// 	return;
+		// }
+	}
+	// Sponsored Post
+	if(storyElement.querySelector('._5g-l')) {
 		hideStory(storyElement);
 		return;
 	}
-	// Sponsored Post
-	if(storyElement.querySelector('._5g-l') && storyElement.querySelector('.uiStreamSponsoredLink')) {
+	// Sponsored Page
+	if(storyElement.querySelector('._3e_2._m8c')) {
 		hideStory(storyElement);
 		return;
 	}
@@ -86,4 +85,12 @@ function appendStyle(content) {
 
 function isElement(obj) {
 	return (typeof HTMLElement === "object" ? obj instanceof HTMLElement : obj && typeof obj === "object" && obj !== null && obj.nodeType === 1 && typeof obj.nodeName==="string");
+}
+
+function getArrayOfHrefs(elements) {
+	var hrefs = [];
+	[].forEach.call(elements, function(element) {
+		hrefs.push(element.href.replace(/\?.+/, ''));
+	});
+	return hrefs;
 }
