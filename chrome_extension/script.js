@@ -161,7 +161,14 @@ function isElement(obj) {
 function getArrayOfHrefs(elements) {
 	var hrefs = [];
 	[].forEach.call(elements, function(element) {
-		hrefs.push(element.href.replace(/\?.+/, ''));
+		var href = element.href;
+		if(['/profile.php', '/permalink.php'].indexOf(element.pathname) > -1) {
+			var questionMarkPosition = href.indexOf('&');
+			href = href.substring(0, questionMarkPosition != -1 ? questionMarkPosition : href.length);
+		} else {
+			href = element.href.replace(/\?.+/, '');
+		}
+		hrefs.push(href);
 	});
 	return hrefs;
 }
