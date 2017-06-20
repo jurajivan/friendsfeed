@@ -39,14 +39,20 @@
 			font-size: 12px;
 			margin-left: 12px;
 		}
+		#display_ff_banner {
+			display: none;
+			color: blue;
+		}
 	</style>
 </head>
 <body>
 	<h1>friends feed</h1>
-	<p>By default, we hide all posts that are not directly from your friends or pages you follow.</p>
+	<p>By default, extension hides all posts that are not directly from your friends or pages you follow.</p>
 	<div class="option"><input type="radio" name="display" value="hide" id="display_hide"> <label for="display_hide">Hide completely</label></div>
 	<div class="option"><input type="radio" name="display" value="fade" id="display_fade"> <label for="display_fade">Just fade</label></div>
 	<div class="submit"><button id="save">Save</button><span id="status"></span></div>
+	<p>&nbsp;</p>
+	<p><a href="#" id="display_ff_banner">Display Friends Feed banner</a></p>
 	<script src="preferences.js"></script>
 </body>
 </html>
