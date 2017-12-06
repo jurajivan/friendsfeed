@@ -5,10 +5,10 @@ function save_options() {
 		hideStory: hideStory
 	}, function() {
 		var status = document.getElementById('status');
-		status.textContent = '✓ Saved';
+		status.textContent = '✓ Saved (Reload Facebook)';
 		setTimeout(function() {
 			status.textContent = '';
-		}, 1000);
+		}, 2000);
 	});
 }
 
@@ -34,5 +34,6 @@ function restore_ff_banner() {
 }
 
 document.addEventListener('DOMContentLoaded', restore_options);
+document.getElementById('display_hide').addEventListener('change', save_options);
+document.getElementById('display_fade').addEventListener('change', save_options);
 document.getElementById('display_ff_banner').addEventListener('click', restore_ff_banner);
-document.getElementById('save').addEventListener('click', save_options);

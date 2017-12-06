@@ -81,7 +81,7 @@ function processStory(storyElement) {
 			return;
 		}
 		// Check for Sponsored label instead of Story's timestamp
-		if(storyElement.querySelector('._5paw._4dcu') && storyElement.querySelector('.PageLikeButton')) {
+		if(storyElement.querySelector('._5paw._4dcu')) {
 			hideStory(storyElement);
 			return;
 		}
@@ -105,6 +105,11 @@ function processStory(storyElement) {
 	}
 	// People you may know
 	if(storyElement.querySelector('._1dwg._1w_m .mts')) {
+		hideStory(storyElement);
+		return;
+	}
+	// Popular across Facebook
+	if(storyElement.querySelector('._5_xt') && !storyElement.querySelector('._5_xt > a')) {
 		hideStory(storyElement);
 		return;
 	}
@@ -144,7 +149,13 @@ function insertFriendsFeedNews() {
 
 function hideStory(el) {
 	if(hideStoryPreference) {
-		el.style.display = "none";
+		el.style.width = "100px";
+		el.style.height = "10px";
+		el.style.overflow = "hidden";
+		el.style.position = "fixed";
+		el.style.top = "42px";
+		el.style.left = 0;
+		el.style.opacity = 0;
 	} else {
 		el.style.opacity = .4;
 	}

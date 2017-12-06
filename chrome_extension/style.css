@@ -51,6 +51,7 @@
 	line-height: 13px;
 	font-weight: bold;
 	color: #90949c;
+	-webkit-font-smoothing: antialiased;
 }
 
 #pagelet_friendsfeed .uiHeader .rfloat {

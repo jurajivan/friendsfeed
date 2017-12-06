@@ -10,30 +10,33 @@
 		body {
 			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 			font-size: 14px;
+			line-height: 1.5;
 			margin: 0;
 			padding: 40px;
 			color: #222;
+		}
+		header {
+			display: flex;
+			align-items: center;
+		}
+		.icon {
+			width: 96px;
+			height: 96px;
+			margin-right: 8px;
+			background-image: url('icon_128@2x.png');
+			background-size: contain;
 		}
 		h1 {
 			font-size: 32px;
 			font-weight: 800;
 			letter-spacing: -0.015em;
+			margin: 0;
 		}
 		.option {
 			margin: 4px 0;
 		}
 		.submit {
 			margin-top: 20px;
-		}
-		.submit button {
-			padding: 5px 15px 6px;
-			font-size: 14px;
-			font-weight: 600;
-			color: #fff;
-			border: 0;
-			background-color: #2ecc71;
-			border-radius: 2px;
-			cursor: pointer;
 		}
 		.submit span {
 			font-size: 12px;
@@ -43,16 +46,35 @@
 			display: none;
 			color: blue;
 		}
+		hr {
+			border: none;
+			border-bottom: 1px solid #ccc;
+		}
 	</style>
 </head>
 <body>
-	<h1>friends feed</h1>
-	<p>By default, extension hides all posts that are not directly from your friends or pages you follow.</p>
-	<div class="option"><input type="radio" name="display" value="hide" id="display_hide"> <label for="display_hide">Hide completely</label></div>
-	<div class="option"><input type="radio" name="display" value="fade" id="display_fade"> <label for="display_fade">Just fade</label></div>
-	<div class="submit"><button id="save">Save</button><span id="status"></span></div>
+	<header>
+		<div class="icon"></div>
+		<h1>friends feed</h1>
+	</header>
+	<p>These types of stories and promotions are filtered from Facebook:</p>
+	<ul>
+		<li>Ads in the sidebar and photo lightbox</li>
+		<li>Friend liked...</li>
+		<li>Friend commented on...</li>
+		<li>Sponsored Post</li>
+		<li>Sponsored Page</li>
+		<li>People you may know</li>
+		<li>Popular across Facebook</li>
+	</ul>
+	<p>and you can choose, how to handle them:</p>
+	<div class="option"><input type="radio" name="display" value="hide" id="display_hide"> <label for="display_hide">Hide</label></div>
+	<div class="option"><input type="radio" name="display" value="fade" id="display_fade"> <label for="display_fade">Fade</label></div>
+	<p><span id="status"></span></p>
 	<p>&nbsp;</p>
-	<p><a href="#" id="display_ff_banner">Display Friends Feed banner</a></p>
+	<p><a href="#" id="display_ff_banner">Display Friends Feed banner<br><br></a></p>
+	<hr>
+	<p><a href="mailto:jurajivan@gmail.com">Contact Developer</a></p>
 	<script src="preferences.js"></script>
 </body>
 </html>
