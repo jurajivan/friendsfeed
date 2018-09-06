@@ -98,13 +98,13 @@ function processStory(storyElement) {
 		// }
 	}
 	// Sponsored Post
-	if(storyElement.querySelector('.c_uvt3dboud')) {
+	if(storyElement.querySelector('.t_uvt3d8jho.r_uvt3d8jhn') == false) { //'.c_uvt3dboud'
 		appendStoryReview(storyElement, 'Sponsored Post');
 		hideStory(storyElement);
 		return;
 	}
 	// Sponsored Page
-	if(storyElement.querySelector('.f_uvt3d8hf7')) { // children .v_uvt3d952g.m_uvt3dayxz
+	if(storyElement.querySelector('.u_uvt3darru.m_uvt3dayxz')) { // children .v_uvt3d952g.m_uvt3dayxz // '.k_uvt3d5v0v'
 		appendStoryReview(storyElement, 'Sponsored Page');
 		hideStory(storyElement);
 		return;
