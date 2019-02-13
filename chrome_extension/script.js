@@ -83,7 +83,7 @@ function processStory(storyElement) {
 			return;
 		}
 		// Check for Sponsored label instead of Story's timestamp
-		if(storyElement.querySelector('._5paw._4dcu')) {
+		if(storyElement.querySelector('._5paw._4dcu') || storyElement.querySelector('.b_uvt3d4-o3')) {
 			appendStoryReview(storyElement, 'Sponsored label instead of Story\'s timestamp');
 			hideStory(storyElement);
 			return;
@@ -98,7 +98,7 @@ function processStory(storyElement) {
 		// }
 	}
 	// Sponsored Post
-	if(storyElement.querySelector('.t_uvt3d8jho.r_uvt3d8jhn') == false) { //'.c_uvt3dboud'
+	if(storyElement.querySelector('.t_uvt3d8jho.r_uvt3d8jhn') == false || storyElement.querySelector('.b_uvt3d4-o3')) { //'.c_uvt3dboud'
 		appendStoryReview(storyElement, 'Sponsored Post');
 		hideStory(storyElement);
 		return;
