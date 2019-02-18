@@ -103,35 +103,28 @@ function processStory(storyElement) {
 		// }
 	}
 	// Sponsored Post
-	// if(storyElement.querySelector('.t_uvt3d8jho.r_uvt3d8jhn') == false || 
 	if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs')) { //'.c_uvt3dboud'
 		// Check if there is a group icon
 		if(storyElement.querySelector('._29ee .sp_PcNl_Pzo88k_2x.sx_775f2c')) {
 			appendStoryReview(storyElement, 'Group icon means it can\'t be a Sponsored Post');
 			return;
 		}
-		if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr').firstChild.classList.contains('h_uvt3d4xxx'))
-		{
-			// Check if there is a globe icon
-			if(storyElement.querySelector('.uiStreamPrivacy .sp__EFZWPnvn_g_2x.sx_1f5414')) {
-				appendStoryReview(storyElement, 'Globe icon means public post, could be a Sponsored Post');
-			}
-			// Check if there is a cog icon
-			if(storyElement.querySelector('.uiStreamPrivacy .sp_qn88XkgbTI__2x.sx_c41bfa')) {
-				appendStoryReview(storyElement, 'Cog icon means partly public post, could be a Sponsored Post');
-			}
-			// If there is a number in one of the child element of the label, it's not a Sponsored Post
-			if(containsNumberInLabel(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr').childNodes)) {
-				appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
-				return;
-			}
-			appendStoryReview(storyElement, 'Sponsored Post');
-			hideStory(storyElement);
-			return;
-		} else {
-			appendStoryReview(storyElement, 'Not a Sponsored Post, missing an extra class on the first element of time label');
+		// Check if there is a globe icon
+		if(storyElement.querySelector('.uiStreamPrivacy .sp__EFZWPnvn_g_2x.sx_1f5414')) {
+			appendStoryReview(storyElement, 'Globe icon means public post, could be a Sponsored Post');
+		}
+		// Check if there is a cog icon
+		if(storyElement.querySelector('.uiStreamPrivacy .sp_qn88XkgbTI__2x.sx_c41bfa')) {
+			appendStoryReview(storyElement, 'Cog icon means partly public post, could be a Sponsored Post');
+		}
+		// If there is a number in one of the child element of the label, it's not a Sponsored Post
+		if(containsNumberInLabel(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr').childNodes)) {
+			appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
 			return;
 		}
+		appendStoryReview(storyElement, 'Sponsored Post');
+		hideStory(storyElement);
+		return;
 	}
 	// Sponsored Page
 	if(storyElement.querySelector('.u_uvt3darru.m_uvt3dayxz')) { // children .v_uvt3d952g.m_uvt3dayxz // '.k_uvt3d5v0v'
