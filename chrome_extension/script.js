@@ -93,6 +93,15 @@ function processStory(storyElement) {
 			hideStory(storyElement);
 			return;
 		}
+		if(storyElement.querySelector('.p_uvt3d6rgv.u_uvt3d41_y')) {
+			if(containsNumber(storyElement.querySelector('.p_uvt3d6rgv.u_uvt3d41_y').textContent)) {
+				appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
+				return;
+			}
+			appendStoryReview(storyElement, 'Sponsored label instead of Story\'s timestamp');
+			hideStory(storyElement);
+			return;
+		}
 		appendStoryReview(storyElement, 'Story header seems to be fine');
 		// return;
 		// When a friend like/comment a story of page he follows
@@ -103,7 +112,8 @@ function processStory(storyElement) {
 		// }
 	}
 	// Sponsored Post
-	if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs')) { //'.c_uvt3dboud'
+	if(storyElement.querySelector('._5pcp')) {
+	// if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs')) { //'.c_uvt3dboud'
 		// Check if there is a group icon
 		if(storyElement.querySelector('._29ee .sp_PcNl_Pzo88k_2x.sx_775f2c')) {
 			appendStoryReview(storyElement, 'Group icon means it can\'t be a Sponsored Post');
@@ -118,10 +128,27 @@ function processStory(storyElement) {
 			appendStoryReview(storyElement, 'Cog icon means partly public post, could be a Sponsored Post');
 		}
 		// If there is a number in one of the child element of the label, it's not a Sponsored Post
-		if(containsNumberInLabel(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr').childNodes)) {
+		if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr') &&
+		   containsNumberInLabel(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr').childNodes)) {
 			appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
 			return;
 		}
+		// Check if the meta label contains number
+		if(storyElement.querySelector('._5ptz span') && containsNumber(storyElement.querySelector('._5ptz span').textContent)) {
+			appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
+			return;
+		}
+		// Check if the meta label has timestamp data attribute
+		if(storyElement.querySelector('._5ptz') && storyElement.querySelector('._5ptz').hasAttribute('data-utime')) {
+			appendStoryReview(storyElement, 'Contains number timestamp in the label data attribute, so it\'s not a Sponsored Post');
+			return;
+		}
+		// if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr') &&
+		//    containsNumberInLabel(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs .v_uvt3d4xxe.p_uvt3d4xxr').childNodes)) {
+		// 		appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
+		// 		return;
+		// 	}
+		// }
 		appendStoryReview(storyElement, 'Sponsored Post');
 		hideStory(storyElement);
 		return;
@@ -192,11 +219,19 @@ function hideStory(el) {
 	}
 }
 
+function removeNonNumberCharactersFromString(string) {
+	return string.replace(/[^0-9]/g, "").replace(/ +/, " ");
+}
+
+function containsNumber(string) {
+	return parseInt(removeNonNumberCharactersFromString(string)) > 0;
+}
+
 function containsNumberInLabel(labelFragments) {
 	var foundNumber = false;
 	if(labelFragments) {
 		labelFragments.forEach(function(fragment) {
-			if(parseInt(fragment.textContent) > 0) {
+			if(containsNumber(fragment.textContent)) {
 				foundNumber = true;
 			}
 		});
