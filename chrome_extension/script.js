@@ -89,18 +89,18 @@ function processStory(storyElement) {
 				appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
 				return;
 			}
-			appendStoryReview(storyElement, 'Sponsored label instead of Story\'s timestamp');
-			hideStory(storyElement);
-			return;
+			// appendStoryReview(storyElement, 'Sponsored label instead of Story\'s timestamp');
+			// hideStory(storyElement);
+			// return;
 		}
 		if(storyElement.querySelector('.p_uvt3d6rgv.u_uvt3d41_y')) {
 			if(containsNumber(storyElement.querySelector('.p_uvt3d6rgv.u_uvt3d41_y').textContent)) {
 				appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
 				return;
 			}
-			appendStoryReview(storyElement, 'Sponsored label instead of Story\'s timestamp');
-			hideStory(storyElement);
-			return;
+			// appendStoryReview(storyElement, 'Sponsored label instead of Story\'s timestamp');
+			// hideStory(storyElement);
+			// return;
 		}
 		appendStoryReview(storyElement, 'Story header seems to be fine');
 		// return;
@@ -114,6 +114,21 @@ function processStory(storyElement) {
 	// Sponsored Post
 	if(storyElement.querySelector('._5pcp')) {
 	// if(storyElement.querySelector('.b_uvt3d4-o3 .m_uvt3d4xxh.a_uvt3d4xxs')) { //'.c_uvt3dboud'
+		// Check for a special combination of classes that are only used on non-sponsored posts
+		if(storyElement.querySelector('.m_uvt3d4xxh.s_uvt3d4xxt')) {
+			appendStoryReview(storyElement, 'Contains class that is not used with Sponsored label hiding');
+			return;
+		}
+		// Check if there is a friends icon
+		if(storyElement.querySelector('.sp_DS8hwv22UwM_2x.sx_7b74f4')) {
+			appendStoryReview(storyElement, 'Friends icon means it can\'t be a Sponsored Post');
+			return;
+		}
+		// Check if there is a group icon NEW
+		if(storyElement.querySelector('.sp_ClAPO2ZQw9Y_2x.sx_998e8e')) {
+			appendStoryReview(storyElement, 'Group icon means it can\'t be a Sponsored Post');
+			return;
+		}
 		// Check if there is a group icon
 		if(storyElement.querySelector('._29ee .sp_PcNl_Pzo88k_2x.sx_775f2c')) {
 			appendStoryReview(storyElement, 'Group icon means it can\'t be a Sponsored Post');
@@ -149,6 +164,11 @@ function processStory(storyElement) {
 		// 		return;
 		// 	}
 		// }
+		// Check if displayed letters in the Sponsored label contains number
+		if(storyElement.querySelector('a.m_uvt3d4xxh.a_uvt3d4xxs') && containsNumberInDisplayedLabel(storyElement.querySelectorAll('a.m_uvt3d4xxh.a_uvt3d4xxs > span > span'))) {
+			appendStoryReview(storyElement, 'Contains number in the label, so it\'s not a Sponsored Post');
+			return;
+		}
 		appendStoryReview(storyElement, 'Sponsored Post');
 		hideStory(storyElement);
 		return;
@@ -233,6 +253,21 @@ function containsNumberInLabel(labelFragments) {
 		labelFragments.forEach(function(fragment) {
 			if(containsNumber(fragment.textContent)) {
 				foundNumber = true;
+			}
+		});
+	}
+	return foundNumber == true;
+}
+
+function containsNumberInDisplayedLabel(labelFragments) {
+	var foundNumber = false;
+	if(labelFragments) {
+		labelFragments.forEach(function(fragment) {
+			var spanEl = fragment.querySelector('span.c_uvt3d4xxd');
+			if(spanEl) {
+				if(containsNumber(spanEl.dataset.content)) {
+					foundNumber = true;
+				}
 			}
 		});
 	}
